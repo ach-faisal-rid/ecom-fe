@@ -1,0 +1,28 @@
+{
+    "favorites.resources": [
+        {
+            "filePath": "src\\assets",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\components",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\pages",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\route",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\index.js",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\App.js",
+            "group": "Default"
+        }
+    ]
+}
