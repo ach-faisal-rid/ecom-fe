@@ -8,7 +8,7 @@ class NewArrival extends Component {
      render() {
           var settings = {
                dots: false,
-               infinite: false,
+               infinite: true,
                speed: 500,
                autoplay: true,
                autoplaySpeed:3000,
@@ -48,13 +48,18 @@ class NewArrival extends Component {
           return ( 
                <Fragment>
           <Container className="text-center" fluid={true}>
-          <div className="section-title text-center mb-55"><h2>NEW ARRIVAL</h2>
-          <p>Some Of Our Exclusive Collection, You May Like</p>
+          <div className="section-title text-center mb-55"><h2>NEW ARRIVAL &nbsp;
+
+            <a className="btn btn-sm ml-2 site-btn" onClick={this.previous} ><i className="fa fa-angle-left"></i></a>
+            &nbsp;
+            <a className="btn btn-sm ml-2 site-btn" onClick={this.next} ><i className="fa fa-angle-right"></i></a>
+
+            </h2>
           </div>
 
                <Row>
 
-               <Slider {...settings}>
+               <Slider ref={c=>(this.slider=c)} {...settings}>
           <div>
           <Card className="image-box card">
           <img className="center" src="https://rukminim1.flixcart.com/image/800/960/k7z3afk0/watch/t/c/x/lcs-8188-lois-caron-original-imafq3k9ztzdkyhe.jpeg?q=50" />   
