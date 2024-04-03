@@ -7,9 +7,10 @@
 @import "megaMenu.css";
 @import "navMenuDesktop.css";
 @import "navMenuMobile.css";
-@import "megaMenuMobile.css";
 @import "typo.css";
+@import "megaMenuMobile.css";
+@import "responsive.css";
 
 body{
-    background-color: #ffffff;
+     background-color: #ffffff;
 }
