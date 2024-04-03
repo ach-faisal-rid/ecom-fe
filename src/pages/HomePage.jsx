@@ -7,6 +7,7 @@ import Categories from '../components/home/Categories'
 import Collection from '../components/home/Collection'
 import NewArrival from '../components/home/NewArrival'
 import FeaturedProducts from '../components/home/FeaturedProducts'
+import FooterDesktop from '../components/common/FooterDesktop'
 
 class HomePage extends Component {
   render() {
@@ -26,6 +27,7 @@ class HomePage extends Component {
         <FeaturedProducts/>
         <NewArrival />
         <Collection />
+        <FooterDesktop/>
       </Fragment>
     )
   }
