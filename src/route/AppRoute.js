@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 
 import UserLoginPage from "../pages/userLoginPage";
 import ContactPage from '../pages/ContactPage';
+import CartPage from '../pages/CartPage';
 
 import PrivacyPage from '../pages/PrivacyPage';
 import PurchasePage from '../pages/PurchasePage';
@@ -18,6 +19,8 @@ class AppRoute extends Component {
             <Route exact path="/login" element={<UserLoginPage />} />
             
             <Route exact path="/contact" element={<ContactPage/>} />
+            
+            <Route exact path="/cart" element={<CartPage/>} />
             
             <Route exact path="/privacy" element={<PrivacyPage/>} />
             <Route exact path="/purchase" element={<PurchasePage/>} />
