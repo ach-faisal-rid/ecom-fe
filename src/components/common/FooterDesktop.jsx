@@ -42,10 +42,11 @@ export class FooterDesktop extends Component {
                   Company Profile
                 </Link>
                 <br></br>
-                <Link to="/" className="footer-link">
+                <Link to="/contact" className="footer-link">
                   {" "}
                   Contact Us
                 </Link>
+                <br></br>
                 <br></br>
               </Col>
 
