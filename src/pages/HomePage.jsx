@@ -9,17 +9,28 @@ import NewArrival from '../components/home/NewArrival'
 import FeaturedProducts from '../components/home/FeaturedProducts'
 import FooterDesktop from '../components/common/FooterDesktop'
 import FooterMobile from '../components/common/FooterMobile'
-import { Axios } from 'axios'
+import axios from 'axios';
 import AppURL from '../api/AppURL'
 
 class HomePage extends Component {
-  componentDidMount(){
-    window.scroll(0,0)
-    this.GetVisitorDetails()
+  componentDidMount() {
+    window.scroll(0, 0); // Gulir ke atas saat komponen dipasang
+    this.GetVisitorDetails().then(() => {
+      // Lakukan sesuatu setelah data pengunjung berhasil diambil
+    });
   }
-  GetVisitorDetails =()=>{
-    Axios.get(AppURL.VisitorDetails).then().catch()
-  }
+  
+  GetVisitorDetails = async () => {
+    try {
+      const response = await axios.get(AppURL.VisitorDetails); // Tunggu respons
+      return response.data;
+    } catch (error) {
+      // Tangani error
+      console.error(error);
+      throw error; // Rethrow error agar dapat ditangkap di componentDidMount
+    }
+  };
+  
   render() {
     return (
       <Fragment>
