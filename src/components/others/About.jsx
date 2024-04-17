@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class About extends Component {
   constructor() {
@@ -45,7 +46,7 @@ class About extends Component {
             >
               <h4 className="section-title-login">About Us Page </h4>
               <p className="section-title-contact">
-                {about || ( // Display default content if about is empty
+                {ReactHtmlParser (about) || ( // Display default content if about is empty
                   <span>Fetching about information...</span>
                 )}
               </p>
