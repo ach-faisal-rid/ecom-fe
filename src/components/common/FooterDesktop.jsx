@@ -32,7 +32,7 @@ export class FooterDesktop extends Component {
 
               <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
                 <h5 className="footer-menu-title">THE COMPANY</h5>
-                <Link to="/" className="footer-link">
+                <Link to="/about" className="footer-link">
                   {" "}
                   About Us
                 </Link>
@@ -46,7 +46,6 @@ export class FooterDesktop extends Component {
                   {" "}
                   Contact Us
                 </Link>
-                <br></br>
                 <br></br>
               </Col>
 
@@ -66,7 +65,6 @@ export class FooterDesktop extends Component {
                   Refund Policy{" "}
                 </Link>
                 <br></br>
-                <br></br>
               </Col>
 
               <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
@@ -79,6 +77,8 @@ export class FooterDesktop extends Component {
                   <img className="mt-2" src={Apple} />
                 </a>
                 <br></br>
+                Change Your Language <br></br>
+                <div id="google_translate_element"> </div>
               </Col>
             </Row>
           </Container>
@@ -87,7 +87,7 @@ export class FooterDesktop extends Component {
             <Container>
               <Row>
                 <h6 className="text-white">
-                  © Copyright 2024 by easy Shop, All Rights Reserved
+                  © Copyright 2021 by easy Shop, All Rights Reserved
                 </h6>
               </Row>
             </Container>
