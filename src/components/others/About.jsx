@@ -15,16 +15,23 @@ class About extends Component {
     axios
       .get(AppURL.AllSiteInfo)
       .then((response) => {
-        let StatusCode = response.status;
-        if (StatusCode == 200) {
-          let JsonData = response.data[0]["about"];
-          this.setState({ about: JsonData });
+        let statusCode = response.status; // Use lowercase for consistency
+        if (statusCode === 200) {
+          let aboutData = response.data[0].about; // Use clearer variable name
+          this.setState({ about: aboutData });
+        } else {
+          // Handle errors here (e.g., display error message)
+          console.error("Error fetching about data:", response.statusText);
         }
       })
-      .catch((error) => {});
+      .catch((error) => {
+        // Handle network errors here (e.g., display a fallback message)
+        console.error("Error fetching about data:", error);
+      });
   }
 
   render() {
+    const { about } = this.state; // Destructuring for cleaner code
     return (
       <Fragment>
         <Container>
@@ -38,7 +45,9 @@ class About extends Component {
             >
               <h4 className="section-title-login">About Us Page </h4>
               <p className="section-title-contact">
-                {this.state.about}
+                {about || ( // Display default content if about is empty
+                  <span>Fetching about information...</span>
+                )}
               </p>
             </Col>
           </Row>
