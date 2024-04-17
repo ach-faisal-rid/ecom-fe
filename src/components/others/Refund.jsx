@@ -31,7 +31,7 @@ class Refund extends Component {
       })
       .catch((error) => {
         // Handle network errors here (e.g., display a fallback message)
-        console.error("Error fetching refound data:", error);
+        console.error("Error fetching refund data:", error);
       });
   }
 
