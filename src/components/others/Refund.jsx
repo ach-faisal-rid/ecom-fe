@@ -49,12 +49,13 @@ class Refund extends Component {
               xs={12}
             >
               <h4 className="section-title-login">Refund Page </h4>
-              <p
-                className="section-title-contact"
-                dangerouslySetInnerHTML={{
-                  __html: refund || "<span>Fetching refund information...</span>",
-                }}
-              />
+              <p className="section-title-contact">
+                {refund === "" ? (
+                  <span>Fetching refund information...</span>
+                ) : (
+                  ReactHtmlParser(refund)
+                )}
+              </p>
             </Col>
           </Row>
         </Container>
