@@ -7,36 +7,59 @@ import ReactHtmlParser, {
   convertNodeToElement,
   htmlparser2,
 } from "react-html-parser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export class Purchase extends Component {
   constructor() {
     super();
     this.state = {
       purchase: "",
+      purchaseFromLocalStorage: "", // State for localStorage value
     };
   }
-  
+
   componentDidMount() {
-    axios
-      .get(AppURL.AllSiteInfo)
-      .then((response) => {
-        let statusCode = response.status; // Use lowercase for consistency
-        if (statusCode === 200) {
-          let purchaseData = response.data[0].purchase_guide; // Use clearer variable name
-          this.setState({ purchase: purchaseData });
-        } else {
-          // Handle errors here (e.g., display error message)
-          console.error("Error fetching purchase data:", response.statusText);
-        }
-      })
-      .catch((error) => {
-        // Handle network errors here (e.g., display a fallback message)
-        console.error("Error fetching purchase data:", error);
-      });
+    // Check localStorage for purchase information first
+    const purchaseFromLocalStorage = localStorage.getItem("purchaseGuide");
+    if (purchaseFromLocalStorage) {
+      this.setState({ purchase: purchaseFromLocalStorage });
+    } else {
+      // Fetch from API if not found in localStorage
+      axios
+        .get(AppURL.AllSiteInfo)
+        .then((response) => {
+          let statusCode = response.status;
+          if (statusCode === 200) {
+            let purchaseData = response.data[0].purchase_guide;
+            this.setState({ purchase: purchaseData });
+            localStorage.setItem("purchaseGuide", purchaseData); // Store in localStorage
+          } else {
+            console.error("Error fetching purchase data:", response.statusText);
+            toast.error("Failed to fetch purchase information.", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              toastId: "purchaseFetchError", // Unique ID for potential dismissal
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching purchase data:", error);
+          toast.error("Network error. Please try again later.", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            toastId: "purchaseNetworkError", // Unique ID for potential dismissal
+          });
+        });
+    }
   }
 
   render() {
-    const { purchase } = this.state; // Destructuring for cleaner code
+    const { purchase } = this.state;
     return (
       <Fragment>
         <Container>
@@ -48,9 +71,9 @@ export class Purchase extends Component {
               sm={12}
               xs={12}
             >
-              <h4 className="section-title-login">Purchase Page </h4>
+              <h4 className="section-title-login">Purchase Page</h4>
               <p className="section-title-contact">
-              {purchase === "" ? (
+                {purchase === "" ? (
                   <span>Fetching purchase information...</span>
                 ) : (
                   ReactHtmlParser(purchase)
@@ -59,6 +82,7 @@ export class Purchase extends Component {
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
       </Fragment>
     );
   }
