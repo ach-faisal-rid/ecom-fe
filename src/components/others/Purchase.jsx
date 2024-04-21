@@ -2,11 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
-import ReactHtmlParser, {
-  processNodes,
-  convertNodeToElement,
-  htmlparser2,
-} from "react-html-parser";
+import ReactHtmlParser from "react-html-parser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,51 +11,50 @@ export class Purchase extends Component {
     super();
     this.state = {
       purchase: "",
-      purchaseFromLocalStorage: "", // State for localStorage value
+      loaderDiv: "",
+      mainDiv: "d-none",
     };
   }
 
   componentDidMount() {
-    // Check localStorage for purchase information first
-    const purchaseFromLocalStorage = localStorage.getItem("purchaseGuide");
-    if (purchaseFromLocalStorage) {
-      this.setState({ purchase: purchaseFromLocalStorage });
-    } else {
-      // Fetch from API if not found in localStorage
+    let SiteInfoPurchase = sessionStorage.getItem("AllSiteInfo");
+
+    if (SiteInfoPurchase == null) {
       axios
         .get(AppURL.AllSiteInfo)
         .then((response) => {
-          let statusCode = response.status;
-          if (statusCode === 200) {
-            let purchaseData = response.data[0].purchase_guide;
-            this.setState({ purchase: purchaseData });
-            localStorage.setItem("purchaseGuide", purchaseData); // Store in localStorage
+          let StatusCode = response.status;
+          if (StatusCode == 200) {
+            let JsonData = response.data[0]["purchase_guide"];
+            this.setState({
+              purchase: JsonData,
+              loaderDiv: "d-none",
+              mainDiv: "",
+            });
+
+            sessionStorage.setItem("SiteInfoPurchase", JsonData);
           } else {
-            console.error("Error fetching purchase data:", response.statusText);
-            toast.error("Failed to fetch purchase information.", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              toastId: "purchaseFetchError", // Unique ID for potential dismissal
+            toast.error("Somthing Went Wrong", {
+              position: "bottom-center",
             });
           }
         })
         .catch((error) => {
-          console.error("Error fetching purchase data:", error);
-          toast.error("Network error. Please try again later.", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            toastId: "purchaseNetworkError", // Unique ID for potential dismissal
+          toast.error("Somthing Went Wrong", {
+            position: "bottom-center",
           });
         });
+    } // end If Conditon
+    else {
+      this.setState({
+        purchase: SiteInfoPurchase,
+        loaderDiv: "d-none",
+        mainDiv: "",
+      });
     }
   }
 
   render() {
-    const { purchase } = this.state;
     return (
       <Fragment>
         <Container>
@@ -71,14 +66,30 @@ export class Purchase extends Component {
               sm={12}
               xs={12}
             >
-              <h4 className="section-title-login">Purchase Page</h4>
-              <p className="section-title-contact">
-                {purchase === "" ? (
-                  <span>Fetching purchase information...</span>
-                ) : (
-                  ReactHtmlParser(purchase)
-                )}
-              </p>
+              <h4 className="section-title-login">Purchase Page </h4>
+
+              <div className={this.state.loaderDiv}>
+                <div class="ph-item">
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                      <div class="ph-col-12"></div>
+                      <div class="ph-col-12"></div>
+                      <div class="ph-col-12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={this.state.mainDiv}>
+                <p className="section-title-contact">
+                  {ReactHtmlParser(this.state.purchase)}
+                </p>
+              </div>
             </Col>
           </Row>
         </Container>
