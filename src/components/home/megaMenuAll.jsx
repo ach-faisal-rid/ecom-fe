@@ -1,276 +1,67 @@
 import React, { Component } from "react";
+import AppURL from "../../api/AppURL";
+import axios from "axios";
 
 class MegaMenuAll extends Component {
   constructor() {
     super();
-    this.MegaMenu = this.MegaMenu.bind(this);
+    this.state = {
+      MenuData: [],
+    };
   }
 
   componentDidMount() {
-    this.MegaMenu();
+    axios
+      .get(AppURL.AllCategoryDetails)
+      .then((response) => {
+        this.setState({ MenuData: response.data });
+      })
+      .catch((error) => {});
   }
 
-  MegaMenu() {
-    var acc = document.getElementsByClassName("accordionAll");
-    var accNum = acc.length;
-    var i;
-    for (i = 0; i < accNum; i++) {
-      acc[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-      });
+  MenuItemClick = (event) => {
+    event.target.classList.toggle("active");
+    var panel = event.target.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
     }
-  }
+  };
 
   render() {
-    return (
-      <div className="accordionMenuDivAll">
-        <div className="accordionMenuDivInsideAll">
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
+    const CatList = this.state.MenuData;
 
-          <button className="accordionAll">
+    const MyView = CatList.map((CatList, i) => {
+      return (
+        <div key={i.toString()}>
+          <button onClick={this.MenuItemClick} className="accordionAll">
             <img
               className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
+              src={CatList.category_image}
             />
-            &nbsp; Men's Clothing
+            &nbsp; {CatList.category_name}
           </button>
           <div className="panelAll">
             <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button className="accordionAll">
-            <img
-              className="accordionMenuIconAll"
-              src="https://image.flaticon.com/icons/png/128/739/739249.png"
-            />
-            &nbsp; Men's Clothing
-          </button>
-          <div className="panelAll">
-            <ul>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="accordionItemAll">
-                  {" "}
-                  Mans Tshirt 2
-                </a>
-              </li>
+              {CatList.subcategory_name.map((SubList, i) => {
+                return (
+                  <li>
+                    <a href="#" className="accordionItemAll">
+                      {SubList.subcategory_name}{" "}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
+      );
+    });
+
+    return (
+      <div className="accordionMenuDivAll">
+        <div className="accordionMenuDivInsideAll">{MyView}</div>
       </div>
     );
   }
