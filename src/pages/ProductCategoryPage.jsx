@@ -21,7 +21,7 @@ class ProductCategoryPage extends Component {
     window.scroll(0, 0);
     // alert(this.state.Category);
     axios
-      .get(AppURL.ProductListByCategory(this.state.Category))
+      .get(AppURL.AllProductListByCategory(this.state.Category))
       .then((response) => {
         this.setState({ ProductData: response.data });
       })
