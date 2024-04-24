@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Categories extends Component {
   constructor() {
@@ -34,12 +35,14 @@ class Categories extends Component {
           sm={6}
           xs={6}
         >
-          <Card className="h-100 w-100 text-center">
-            <Card.Body>
-              <img className="center" src={CatList.category_image} />
-              <h5 className="category-name">{CatList.category_name}</h5>
-            </Card.Body>
-          </Card>
+          <Link to={"/productcategory/" + CatList.category_name}>
+            <Card className="h-100 w-100 text-center">
+              <Card.Body>
+                <img className="center" src={CatList.category_image} />
+                <h5 className="category-name">{CatList.category_name}</h5>
+              </Card.Body>
+            </Card>
+          </Link>
         </Col>
       );
     });

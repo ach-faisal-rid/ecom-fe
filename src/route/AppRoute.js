@@ -9,7 +9,8 @@ import CartPage from '../pages/CartPage';
 import PrivacyPage from '../pages/PrivacyPage';
 import PurchasePage from '../pages/PurchasePage';
 import RefundPage from '../pages/RefundPage';
-import AboutPage from "../pages/AboutPage";
+import AboutPage from '../pages/AboutPage';
+import ProductCategoryPage from '../pages/ProductCategoryPage'
 
 class AppRoute extends Component {
   render() {
@@ -21,6 +22,7 @@ class AppRoute extends Component {
             <Route exact path="/contact" element={<ContactPage/>} />
             
             <Route exact path="/cart" element={<CartPage/>} />
+            <Route exact path="/" element={<ProductCategoryPage/>}/>
             
             <Route exact path="/privacy" element={<PrivacyPage/>} />
             <Route exact path="/purchase" element={<PurchasePage/>} />
