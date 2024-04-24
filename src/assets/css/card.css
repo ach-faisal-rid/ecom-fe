@@ -1,49 +1,54 @@
+/* General Card Styling */
 .card {
     width: 100% !important;
     text-decoration: none;
     border: none !important;
     border-radius: 0% !important;
-    box-shadow: 0 0 4px 0 rgba(57, 78, 234, 0.1)
-}
-.card:hover {
+    box-shadow: 0 0 4px 0 rgba(57, 78, 234, 0.1);
+  }
+  
+  .card:hover {
     border-radius: 0% !important;
     text-decoration: none;
-    box-shadow: 0 0 12px 0 rgba(57, 78, 234, 0.1)
-}
-
-.image-box {
+    box-shadow: 0 0 12px 0 rgba(57, 78, 234, 0.1);
+  }
+  
+  /* Image Box CSS */
+  .image-box {
     position: relative;
     margin: auto;
     overflow: hidden;
     width: 100% !important;
-}
-.image-box img {
-    width: 150px !important;
+  }
+  
+  .image-box img {
     transition: all 0.3s;
     display: block;
-    height: 250px !important;
+    height: 250px !important; /* Adjust as needed */
     transform: scale(1);
-}
-.image-box:hover img {
+  }
+  
+  .image-box:hover img {
     transform: scale(1.1);
-}
-
-.center {
+  }
+  
+  /* Center Image */
+  .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
   }
-
+  
+  /* Section Title CSS */
   .section-title h2 {
     font-size: 30px;
     font-weight: 600;
     position: relative;
     display: inline-block;
     margin: 0;
-}
-
-.section-title h2:before {
+  }
+  
+  .section-title h2:before {
     position: absolute;
     top: 17px;
     left: -100px;
@@ -51,9 +56,9 @@
     height: 2px;
     content: "";
     background-color: #000;
-}
-
-.section-title h2:after {
+  }
+  
+  .section-title h2:after {
     position: absolute;
     top: 17px;
     right: -100px;
@@ -61,4 +66,44 @@
     height: 2px;
     content: "";
     background-color: #000;
-}
+  }
+  
+  /* Featured Product Card CSS */
+  .featured-product-card {
+    /* General Card Styling */
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  
+    /* Hover Effect */
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  /* Card Image CSS */
+  .card-img-top {
+    /* Image Sizing and Aspect Ratio */
+    max-height: 300px; /* Adjust as needed */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 10px 10px 0 0; /* Top-left rounded corners */
+    margin-bottom: 20px;
+  }
+  
+  /* Product Name on Card */
+  .product-name-on-card {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  /* Product Price on Card */
+  .product-price-on-card {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
