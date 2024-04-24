@@ -28,7 +28,7 @@ class FeaturedProducts extends Component {
       xl={3} 
       lg={3} 
       md={4} 
-      sm={4} 
+      sm={6} 
       xs={6}>
         <Link to="/productdetails">
           <Card className="featured-product-card shadow image-box card">
