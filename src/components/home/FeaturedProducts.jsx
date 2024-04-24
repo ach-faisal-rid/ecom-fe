@@ -32,7 +32,7 @@ class FeaturedProducts extends Component {
       xs={6}>
         <Link to="/productdetails">
           <Card className="featured-product-card shadow image-box card">
-            <img className="card-img-top img-fluid center" 
+            <img className="card-img-top img-fluid" 
             src={featuredProduct.image} 
             alt={featuredProduct.title} />
             <Card.Body>
